@@ -1,4 +1,12 @@
 # Created by .ignore support plugin (hsz.mobi)
+
+# IntelliJ project files
+.idea
+*.iml
+target
+out
+gen
+
 ### Java template
 # Compiled class file
 *.class
@@ -24,3 +32,11 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+alumni-api/src/test/
+alumni-api/target/generated-sources/
+alumni-mapper/src/test/
+alumni-mapper/target/generated-sources/
+alumni-model/src/test/
+alumni-model/target/generated-sources/
+alumni-service/src/test/
+alumni-service/target/generated-sources/
