@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://cdb-aii8gj6x.gz.tencentcdb.com:10148/alumni?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: gravity5
+    password: gravity5_66ccff

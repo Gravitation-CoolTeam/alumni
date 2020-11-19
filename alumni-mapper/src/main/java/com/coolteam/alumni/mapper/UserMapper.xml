@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.coolteam.alumni.mapper.UserMapper">
+    <resultMap id="UserResultMap" type="com.coolteam.alumni.model.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="birthday" property="birthday" jdbcType="DATE"/>
+        <result column="sex" property="sex" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+        <result column="type" property="type" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler"/>
+        <result column="wechat" property="wechat" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="maxId" resultType="int">
+        select ifnull(max(id), 0) from user
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="UserResultMap">
+        select * from user where id = #{id, jdbcType=INTEGER} limit 1
+    </select>
+
+    <delete id="deleteByPrimaryKey">
+        delete from user where id = #{id, jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert">
+        insert into user (id, name, birthday, sex, type, wechat, create_time)
+        values (
+                #{id, jdbcType=INTEGER},
+                #{name, jdbcType=VARCHAR},
+                #{birthday, jdbcType=DATE},
+                #{sex, typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler, javaType=com.coolteam.alumni.model.UserSex},
+                #{type, typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler, javaType=com.coolteam.alumni.model.UserType},
+                #{wechat, jdbcType=VARCHAR},
+                #{createTime, jdbcType=DATE}
+               )
+    </insert>
+
+    <update id="updateUserByPrimaryKey" parameterType="com.coolteam.alumni.model.User">
+        update user set
+                        name = #{name, jdbcType=VARCHAR} ,
+                        birthday = #{birthday, jdbcType=DATE},
+                        sex = #{sex, typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler, javaType=com.coolteam.alumni.model.UserSex},
+                        type = #{type, typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler, javaType=com.coolteam.alumni.model.UserType},
+                        wechat = #{wechat, jdbcType=VARCHAR}
+        where id = #{id, jdbcType=INTEGER}
+    </update>
+
+</mapper>
